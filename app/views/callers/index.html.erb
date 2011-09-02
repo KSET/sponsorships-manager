@@ -1,0 +1,25 @@
+<h1>Listing callers</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Division</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @callers.each do |caller| %>
+  <tr>
+    <td><%= caller.name %></td>
+    <td><%= caller.division %></td>
+    <td><%= link_to 'Show', caller %></td>
+    <td><%= link_to 'Edit', edit_caller_path(caller) %></td>
+    <td><%= link_to 'Destroy', caller, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Caller', new_caller_path %>

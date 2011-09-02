@@ -1,4 +1,14 @@
 SponsorshipManager::Application.routes.draw do
+  get "dash_board/index"
+
+  resources :events
+
+  resources :callers
+
+  resources :sponsors
+
+  root :dashboard
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
