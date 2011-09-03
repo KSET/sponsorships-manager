@@ -1,3 +1,9 @@
 KSET.org
 
 prototype app for managing event sponsorships
+
+TODO:
+
+* set up automatic deployment with capistrano
+* habtm relationships
+* client side validation forms
