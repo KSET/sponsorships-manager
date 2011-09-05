@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :type_id %><br />
+    <%= f.select :event_type_id, EventType.all.collect{|et| [et.name, et.id]} %>
   </div>
   <div class="field">
     <%= f.label :year %><br />
     <%= f.text_field :year %>
   </div>
   <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
   </div>
   <div class="actions">
     <%= f.submit %>

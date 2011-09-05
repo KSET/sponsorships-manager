@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Type</th>
     <th>Year</th>
     <th>Type</th>
     <th></th>
@@ -12,9 +12,8 @@
 
 <% @events.each do |event| %>
   <tr>
-    <td><%= event.name %></td>
-    <td><%= event.year %></td>
     <td><%= event.type %></td>
+    <td><%= event.year %></td>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
