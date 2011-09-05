@@ -1,9 +1,9 @@
 class CreateEvents < ActiveRecord::Migration
   def up
     create_table :events do |t|
-      t.string :name
-      t.string :type, :limit => 1
       t.integer :year
+      t.references :event_type
+      t.text :description
 
       t.timestamps
     end
