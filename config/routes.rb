@@ -5,6 +5,8 @@ SponsorshipManager::Application.routes.draw do
   resources :callers
 
   resources :sponsors
+  
+  resources :event_types
 
   root :to => 'dashboard#index'
 
