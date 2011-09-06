@@ -19,7 +19,7 @@ class Event < ActiveRecord::Base
 
   # Since Event belongs_to an EventType, we can't have a object wrapper call like event.type
   # so we define a type method that fetches a EventType with id stored in this object and
-  # return it's string representation (defined in EventType)
+  # returns its string representation (defined in EventType)
   # NOTE: this is a slight hack young ducklings, try to improve this one
   def type
     EventType.find(self.event_type_id).to_s
