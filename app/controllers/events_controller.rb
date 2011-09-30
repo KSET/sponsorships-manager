@@ -80,4 +80,30 @@ class EventsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def remove_c
+    @event = Event.find(params[:id])
+    @caller = @event.callers.find(params[:id])
+    
+    @event.callers.delete(@caller)
+    
+    respond_to do |format|
+      if @event.save
+        format.html  { redirect_to(@event, :notice => 'Caller removed.') }
+        format.json  { head :ok }
+      else
+        format.html  { render :action => "show" }
+        #ovo nesto dole napravi za json reda radi
+        #format.json  { render :json => @post.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
+  def add_c
+    @event = Event.find(params[:id])
+    @comment = Callers.find(params[:cid])
+    @event.callers.push(@comment)
+    
+    redirect_to event_path(@event)
+  end
 end

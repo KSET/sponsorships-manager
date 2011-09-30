@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :year
 
   # Year must be unique for this event type, that is we can't 
-  # have events multiple events of the same tape in one year
+  # have events multiple events of the same type in one year
   validates_uniqueness_of :year, :scope => [:event_type_id]
 
   # Since Event belongs_to an EventType, we can't have a object wrapper call like event.type

@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20110905220748) do
 
   create_table "callers_events", :id => false, :force => true do |t|
     t.integer "caller_id"
-    t.integer "sponsor_id"
+    t.integer "event_id"
   end
 
   create_table "event_types", :force => true do |t|
