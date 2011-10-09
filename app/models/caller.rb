@@ -4,4 +4,8 @@ class Caller < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def caller_id
+    #Caller.find(self.id).to_s
+    "2"#"caller_id"
+  end
 end

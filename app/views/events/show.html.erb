@@ -27,18 +27,18 @@
   <tr>
     <td><%=c.name%></td>
     <td><%=c.division%></td>
-    <td><%= link_to 'Remove', event_callers_path(@event, c), confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Remove', event_callers_remove_path(@event, c), confirm: 'Are you sure?', method: :delete %></td>
   </tr>  
   <% end %>
 </table>
 
 <br />
 
-<%= form_for([@event]) do |f| %>
+<%= form_for([@event, @event.callers.build]) do |f| %>
   <div class="field">
-    <%= f.label :type_id %><br />
+    <%= f.label :caller_id %><br />
     <% @callers = Caller.all.delete_if {|c| (@event.callers.include?(c))}%>
-    <%= f.select :event_type_id, @callers.collect{|c| c.name + "-" + c.division} %>
+    <%= f.select :caller_id, @callers.collect {|c| [c.name + "-" + c.division, c.id]} %>
   </div>
   <div class="actions">
     <%= f.submit %>
