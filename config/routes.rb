@@ -10,8 +10,8 @@ SponsorshipManager::Application.routes.draw do
 
   root :to => 'dashboard#index'
   
-  match 'events/:id/:cid' => 'events#remove_c', :as => 'event_callers_remove', :via => :delete
-  match 'events/:id' => 'events#add_c', :as => 'event_callers', :via => :post
+  match 'events/:id/:caller_id' => 'events#remove_caller', :as => 'event_callers_remove', :via => :delete
+  match 'events/:id' => 'events#add_caller', :as => 'event_callers', :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

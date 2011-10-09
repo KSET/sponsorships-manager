@@ -4,8 +4,9 @@ class Caller < ActiveRecord::Base
 
   validates_presence_of :name
 
-  def caller_id
-    #Caller.find(self.id).to_s
-    "2"#"caller_id"
+  #method to concat name with division 
+  #and return that value.
+  def name_and_division
+    return self.name+"->"+self.division
   end
 end

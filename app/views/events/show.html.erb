@@ -34,14 +34,14 @@
 
 <br />
 
-<%= form_for([@event, @event.callers.build]) do |f| %>
+<%= form_tag({:controller => "events", :action => "add_caller"}, :method => "post") do |f| %>
   <div class="field">
-    <%= f.label :caller_id %><br />
+    <%= label_tag (:caller_id) %><br />
     <% @callers = Caller.all.delete_if {|c| (@event.callers.include?(c))}%>
-    <%= f.select :caller_id, @callers.collect {|c| [c.name + "-" + c.division, c.id]} %>
+    <%= select_tag "caller_id", options_from_collection_for_select(@callers, "id", "name_and_division"), :prompt => "Who to add" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "Add caller" %>
   </div>
 <% end %>
 

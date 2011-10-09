@@ -81,9 +81,9 @@ class EventsController < ApplicationController
     end
   end
   
-  def remove_c
+  def remove_caller
     @event = Event.find(params[:id])
-    @caller = @event.callers.find(params[:cid])
+    @caller = @event.callers.find(params[:caller_id])
     
     @event.callers.delete(@caller)
     
@@ -93,16 +93,22 @@ class EventsController < ApplicationController
         format.json { head :ok }
       else
         format.html { render :action => "show" }
-        #ovo nesto dole napraviti za json reda radi
+        #finish this if json needed?
         #format.json  { render :json => @post.errors, :status => :unprocessable_entity }
       end
     end
   end
   
-  def add_c
-    @event = Event.find(params[:id])
-    @caller = Caller.find(params[:caller][:caller_id])
-    @event.callers.push(@caller)
+  def add_caller
+    #to avoid bugs
+    if params[:caller_id] != ""
+      @event = Event.find(params[:id])
+      @caller = Caller.find(params[:caller_id])
+      #to avoid even more bugs
+      if !(@event.callers.include?(@caller))
+        @event.callers.push(@caller)
+      end
+    end
     
     #redirect_to event_path(@event)
     respond_to do |format|
