@@ -84,6 +84,24 @@ class EventsController < ApplicationController
   #
   #CALLERS#######
   #
+  def add_caller
+    @event = Event.find(params[:id])
+
+    if params[:caller_id] != ""
+      @caller = Caller.find(params[:caller_id])
+      #to avoid even more bugs
+      if !(@event.callers.include?(@caller))
+        @event.callers.push(@caller)
+      end
+    end
+    
+    #redirect_to event_path(@event)
+    respond_to do |format|
+      format.html { redirect_to(event_path(@event)) }
+      format.json { head :ok }
+    end
+  end
+
   def remove_caller
     @event = Event.find(params[:id])
     @caller = @event.callers.find(params[:caller_id])
@@ -125,54 +143,5 @@ class EventsController < ApplicationController
   end
   #
   #END#######
-  #
-  
-  #two forms with same route so they use same function
-  #commit parameter makes a difference
-  def add_sponsor_or_caller
-    @event = Event.find(params[:id])
-    
-    #to avoid bugs
-    if params[:commit] == "Add sponsor" and params[:sponsor_id] != ""
-      @sponsor = Sponsor.find(params[:sponsor_id])
-      #to avoid even more bugs
-      if !(@event.sponsors.include?(@sponsor))
-        @event.sponsors.push(@sponsor)
-      end
-    #to avoid bugs too
-    else if params[:commit] == "Add caller" and params[:caller_id] != ""
-      @caller = Caller.find(params[:caller_id])
-      #to avoid even more bugs
-      if !(@event.callers.include?(@caller))
-        @event.callers.push(@caller)
-      end
-    end end
-    
-    #redirect_to event_path(@event)
-    respond_to do |format|
-      format.html { redirect_to(event_path(@event)) }
-      format.json { head :ok }
-    end
-  end
-  
-  def change_sponsor_status
-    @event = Event.find(params[:id])
-    @sponsor = Sponsor.find(params[:sponsor_id])
-    if @sponsor.status == "Y"
-      @sponsor.status = "N"
-    else
-      if @sponsor.status == "N"
-        @sponsor.status = "Y"
-      else
-        @sponsor.status = "N"
-      end
-    end 
-    
-    @sponsor.save
-    
-    respond_to do |format|
-      format.html { redirect_to(event_path(@event), :notice => 'Sponsor status updated.') }
-      format.json { head :ok }
-    end  
-  end
+  #  
 end

@@ -1,0 +1,28 @@
+<h1>Listing Contributions</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Contact</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contributions.each do |c| %>
+  <tr>
+    <td><%= c.sponsor.name %></td>
+    <td><%= c.sponsor.contact %></td>
+    <td><%= link_to c.status, contribution_change_status_path(c.event_id, c.id) %></td>
+    <td><%= link_to 'Show', event_contribution_path(c.event_id, c.id) %></td>
+    <td><%= link_to 'Edit', edit_event_contribution_path(c.event_id, c.id) %></td>
+    <td><%= link_to 'Destroy', event_contribution_path(c.event_id, c.id), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Contribution', new_event_contribution_path %>
+<%= link_to 'Back', event_path(params[:event_id]) %>

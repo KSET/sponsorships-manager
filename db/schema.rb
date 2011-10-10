@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20111009211606) do
   create_table "contributions", :force => true do |t|
     t.string   "status",     :limit => 1, :default => "N"
     t.decimal  "amount",                  :default => 0.0
-    t.string   "other",                   :default => "Nothing"
+    t.text     "other",                   :default => "Nothing"
     t.integer  "sponsor_id"
     t.integer  "event_id"
     t.datetime "created_at"

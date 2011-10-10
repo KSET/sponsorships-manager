@@ -1,0 +1,30 @@
+<%= form_for([@event, @contribution]) do |f| %>
+  <% if @contribution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contribution.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @contribution.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.hidden_field :event_id, :value =>@event.id %>
+  <div class="field">
+    <%= f.label :sponsor_id %><br />
+    <%= f.select "sponsor_id", Sponsor.all.collect{|s| [s.name, s.id]}, :prompt => "Contribution sponsor" %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :other %><br />
+    <%= f.text_area :other %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

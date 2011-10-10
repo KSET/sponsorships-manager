@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sponsor Name:</b>
+  <%= @contribution.sponsor.name %>
+</p>
+
+<p>
+  <b>Sponsor Contact:</b>
+  <%= @contribution.sponsor.contact %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= link_to @contribution.status, contribution_change_status_path(@event, @contribution) %>
+</p>
+
+<p>
+  <b>Money amount:</b>
+  <%= @contribution.amount %>
+</p>
+
+<p>
+  <b>Other:</b>
+  <%= @contribution.other %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_contribution_path(@event, @contribution) %> |
+<%= link_to 'Back', event_contributions_path %>
