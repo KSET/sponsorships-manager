@@ -9,7 +9,9 @@ class Event < ActiveRecord::Base
 
   # n to n on Sponsor model
   has_and_belongs_to_many :sponsors
-
+  
+  has_many :contributions
+  
   # Year attr must be present when storing to db
   validates_presence_of :year
 

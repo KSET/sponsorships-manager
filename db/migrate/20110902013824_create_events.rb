@@ -5,6 +5,8 @@ class CreateEvents < ActiveRecord::Migration
       t.references :event_type
       t.text :description
 
+      #t.integer :contribution_id
+
       t.timestamps
     end
   end

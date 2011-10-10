@@ -4,8 +4,6 @@ class CreateSponsors < ActiveRecord::Migration
       t.string :name
       t.string :contact
       t.string :adress
-      t.string :status, :limit => 1
-      t.decimal :amount
       t.text :info
 
       t.timestamps

@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-
 <p>
 <b>Type:</b>
 <%= @event.type %>
@@ -17,6 +16,8 @@
 <%= @event.description %>
 </p>
 
+<!--CALLERS--->
+<p>Callers:</p>
 <table>
   <tr>
     <th>Name</th>
@@ -34,16 +35,57 @@
 
 <br />
 
-<%= form_tag({:controller => "events", :action => "add_caller"}, :method => "post") do |f| %>
+<%= form_tag({:controller => "events", :action => "add_sponsor_or_caller"}, :method => "post") do |f| %>
   <div class="field">
     <%= label_tag (:caller_id) %><br />
     <% @callers = Caller.all.delete_if {|c| (@event.callers.include?(c))}%>
-    <%= select_tag "caller_id", options_from_collection_for_select(@callers, "id", "name_and_division"), :prompt => "Who to add" %>
+    <%= select_tag "caller_id", options_from_collection_for_select(@callers, "id", "name_and_division"), :prompt => "Caller to add" %>
   </div>
   <div class="actions">
     <%= submit_tag "Add caller" %>
   </div>
 <% end %>
+<!--END--->
+
+<br />
+
+<!--SPONSORS--->
+<p>Sponsors:</p>
+<%= link_to 'All', event_path(@event) %>
+<%= link_to 'Confirmed', event_path(@event, :filter_option => "Y") %>
+<%= link_to 'Unconfirmed', event_path(@event, :filter_option => "N") %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Contact</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  <% @event.contributions.each do |c| %>
+  <% if c.status == params[:filter_option] or nil == params[:filter_option] %>
+  <tr>
+    <td><%=c.sponsor.name%></td>
+    <td><%=c.sponsor.contact%></td>
+    <td><%= link_to c.status, event_contribution_remove_path(@event, c) %></td>
+    <td><%= link_to 'Remove', event_contribution_remove_path(@event, c), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+  <% end %>
+  <% end %>
+</table>
+
+<br />
+
+<%= form_tag({:controller => "events", :action => "add_sponsor_or_caller"}, :method => "post") do |f| %>
+  <div class="field">
+    <%= label_tag (:sponsor_id) %><br />
+    <% @sponsors = Sponsor.all.delete_if {|s| (@event.sponsors.include?(s))}%>
+    <%= select_tag "sponsor_id", options_from_collection_for_select(@sponsors, "id", "name"), :prompt => "Sponsor to add" %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Add sponsor" %>
+  </div>
+<% end %>
+<!--END--->
 
 <br />
 

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  status: MyString
+  amount: 9.99
+  other: MyString
+
+two:
+  status: MyString
+  amount: 9.99
+  other: MyString

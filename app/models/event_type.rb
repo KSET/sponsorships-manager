@@ -1,5 +1,5 @@
 class EventType < ActiveRecord::Base
-  has_many :events
+  has_many :events, :dependent => :destroy
 
   # Name of EventType must be present when storing to db
   validates_presence_of :name

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110905220748) do
+ActiveRecord::Schema.define(:version => 20111009211606) do
 
   create_table "callers", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20110905220748) do
   create_table "callers_events", :id => false, :force => true do |t|
     t.integer "caller_id"
     t.integer "event_id"
+  end
+
+  create_table "contributions", :force => true do |t|
+    t.string   "status",     :limit => 1, :default => "N"
+    t.decimal  "amount",                  :default => 0.0
+    t.string   "other",                   :default => "Nothing"
+    t.integer  "sponsor_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "event_types", :force => true do |t|
@@ -49,8 +59,6 @@ ActiveRecord::Schema.define(:version => 20110905220748) do
     t.string   "name"
     t.string   "contact"
     t.string   "adress"
-    t.string   "status",     :limit => 1
-    t.decimal  "amount"
     t.text     "info"
     t.datetime "created_at"
     t.datetime "updated_at"
