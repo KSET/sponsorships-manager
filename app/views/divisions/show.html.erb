@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @division.name %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @division.description %>
+</p>
+
+<p>Members:</p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Action</th>
+  </tr>
+  <% @division.callers.each do |c| %>
+  <tr>
+    <td><%=c.name%></td>
+    <td><%= link_to 'Remove', division_callers_remove_path(@division.id, c.id), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>  
+  <% end %>
+</table>
+
+<%= link_to 'Edit', edit_division_path(@division) %> |
+<%= link_to 'Back', divisions_path %>

@@ -8,7 +8,8 @@
 
 event_types = EventType.create([{name: 'Brucka'}])
 events = Event.create([{year: 1, event_type_id: event_types.first}, {year: 2, event_type_id: event_types.first}, {year: 3, event_type_id: event_types.first}])
-callers = Caller.create([{name: 'Cvjetko', division: 'Torzo'},{name: 'Nikica', division: 'Mammal'},{name: 'Coha', division: 'Pjetao!'},{name: 'Tashner', division: 'Stream'},{name: 'Andro', division: 'Gospar'}])
+divisions = Division.create([{name: 'Comp'},{name: 'Paparazzi'},{name: 'Stevo'}])
+callers = Caller.create([{name: 'Cvjetko', division_id: 1},{name: 'Nikica', division_id: 1},{name: 'Coha', division_id: 2},{name: 'Tashner', division_id: 2},{name: 'Andro', division_id: 3}])
 sponsors = Sponsor.create([{name: 'HP', contact: 'Coha'},{name: 'Shonjo', contact: 'Pipi'},{name: 'Badel', contact: 'Brandy'},{name: 'Clint', contact: 'Eastwood'},{name: 'Star Trek', contact: 'Q'}])
 cont = Contribution.create([{:status => 'N'},{:status => 'N'},{:status => 'Y'},{:status => 'Y'},])
 e = Event.find(:first)

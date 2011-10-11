@@ -16,8 +16,8 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :division %><br />
-    <%= f.text_field :division %>
+    <%= f.label :division_id %><br />
+    <%= f.select :division_id, Division.all.collect{|et| [et.name, et.id]} %>
   </div>
   <div class="actions">
     <%= f.submit %>

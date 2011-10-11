@@ -27,7 +27,7 @@
   <% @event.callers.each do |c| %>
   <tr>
     <td><%=c.name%></td>
-    <td><%=c.division%></td>
+    <td><%=c.division.name%></td>
     <td><%= link_to 'Remove', event_callers_remove_path(@event, c), confirm: 'Are you sure?', method: :delete %></td>
   </tr>  
   <% end %>

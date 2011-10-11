@@ -4,6 +4,8 @@ SponsorshipManager::Application.routes.draw do
     resources :contributions
   end
 
+  resources :divisions
+
   resources :callers
 
   resources :sponsors
@@ -12,6 +14,7 @@ SponsorshipManager::Application.routes.draw do
 
   root :to => 'dashboard#index'
   
+  match 'divisions/:id/caller/:caller_id' => 'divisions#remove_caller', :as => 'division_callers_remove', :via => :delete
   match 'events/:id/caller/:caller_id' => 'events#remove_caller', :as => 'event_callers_remove', :via => :delete
   match 'events/:id/contribution_remove/:contribution_id' => 'events#remove_contribution', 
         :as => 'event_contribution_remove', :via => :delete

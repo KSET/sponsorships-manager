@@ -1,0 +1,23 @@
+<h1>Listing divisions</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @divisions.each do |division| %>
+  <tr>
+    <td><%= division.name %></td>
+    <td><%= link_to 'Show', division %></td>
+    <td><%= link_to 'Edit', edit_division_path(division) %></td>
+    <td><%= link_to 'Destroy', division, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Division', new_division_path %>

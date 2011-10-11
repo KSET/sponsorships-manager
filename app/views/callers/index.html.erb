@@ -12,7 +12,7 @@
 <% @callers.each do |caller| %>
   <tr>
     <td><%= caller.name %></td>
-    <td><%= caller.division %></td>
+    <td><%= caller.division.name %></td>
     <td><%= link_to 'Show', caller %></td>
     <td><%= link_to 'Edit', edit_caller_path(caller) %></td>
     <td><%= link_to 'Destroy', caller, confirm: 'Are you sure?', method: :delete %></td>

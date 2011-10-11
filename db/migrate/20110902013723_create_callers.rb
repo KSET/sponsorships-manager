@@ -4,7 +4,8 @@ class CreateCallers < ActiveRecord::Migration
       t.string :name
       t.string :phone
       t.string :email
-      t.string :division
+      
+      t.integer :division_id
 
       t.timestamps
     end
