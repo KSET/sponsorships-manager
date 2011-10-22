@@ -3,8 +3,8 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Contact person</th>
-    <th>Contact info</th>
+    <th>Contact</th>
+    <th>Info</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +13,8 @@
 <% @sponsors.each do |sponsor| %>
   <tr>
     <td><%= sponsor.name %></td>
-    <td><%= sponsor.contact_person %></td>
-    <td><%= sponsor.contact_info %></td>
+    <td><%= sponsor.contact %></td>
+    <td><%= sponsor.info %></td>
     <td><%= link_to 'Show', sponsor %></td>
     <td><%= link_to 'Edit', edit_sponsor_path(sponsor) %></td>
     <td><%= link_to 'Destroy', sponsor, confirm: 'Are you sure?', method: :delete %></td>
